@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import './site.css';
-import robot from './images/robot.png';
+import robot from './robot.png';
 
 function h1_onclick() {
   const div = document.getElementById('content');
