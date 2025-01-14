@@ -1,30 +1,12 @@
-import {StrictMode, useState} from 'react';
+import {StrictMode} from 'react';
 import { createRoot } from 'react-dom/client'
-
-export const HelloWorld = ({text, uppercase}) => {
-
-  const [hello, setHello] = useState(text ?? "Hello from space!");
-  const [upperCase, setUpperCase] = useState(uppercase ?? false);
-
-  const toggleCase = () => {
-    if (upperCase) {
-      setHello(hello.toLowerCase());
-    } else {
-      setHello(hello.toUpperCase());
-    }
-    setUpperCase(!upperCase);
-  }
-
-  return (
-    <h1 onClick={toggleCase}>{hello}</h1>
-  )
-}
+import './index.css';
+import {Counter} from './Counter';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HelloWorld text={'Hello ' + 'World!'} uppercase={true} />
-    <HelloWorld text='Goodbye World!' uppercase={false}/>
-    <HelloWorld text='Hello from Mars!' uppercase={false}/>
-    <HelloWorld />
+    <Counter countBy={1} />
+    <Counter countBy={2} />
+    <Counter countBy={10} />
   </StrictMode>,
 )
