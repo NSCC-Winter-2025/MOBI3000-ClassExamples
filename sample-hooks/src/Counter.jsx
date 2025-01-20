@@ -16,6 +16,7 @@ export const Counter = ({countBy}) => {
     //console.log('useEffect is called.')
   }, []);
 
+
   useEffect(() => {
     console.log('Timer is started/stopped.');
     let t;

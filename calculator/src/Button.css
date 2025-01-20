@@ -1,0 +1,27 @@
+
+.button {
+  height: 130px;
+  width: 150px;
+  border: 1px solid black;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+}
+
+.button > h1 {
+  height: 1.1em;
+  margin: 10px 0;
+}
+
+.button button {
+  font-size: 2em;
+  padding: 0.1em;
+  width: 80px;
+  font-weight: bold;
+  background-color: #666;
+  color: white;
+  border-radius: 5px;
+}
