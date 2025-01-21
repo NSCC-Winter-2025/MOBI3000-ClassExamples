@@ -1,25 +1,25 @@
 import './ButtonGrid.css';
 import {Button} from "./Button.jsx";
 
-export const ButtonGrid = () => {
+export const ButtonGrid = ({onOperandClick, onOperatorClick}) => {
   return (
     <div className="buttongrid">
-      <Button text="7" />
-      <Button text="8" />
-      <Button text="9" />
-      <Button text="X" />
-      <Button text="4" />
-      <Button text="5" />
-      <Button text="6" />
-      <Button text="-" />
-      <Button text="1" />
-      <Button text="2" />
-      <Button text="3" />
-      <Button text="+" />
-      <Button text="C" />
-      <Button text="0" />
-      <Button text="." />
-      <Button text="=" />
+      <Button text="7" onClick={onOperandClick} />
+      <Button text="8" onClick={onOperandClick} />
+      <Button text="9" onClick={onOperandClick} />
+      <Button text="X" onClick={onOperatorClick} />
+      <Button text="4" onClick={onOperandClick} />
+      <Button text="5" onClick={onOperandClick} />
+      <Button text="6" onClick={onOperandClick} />
+      <Button text="-" onClick={onOperatorClick} />
+      <Button text="1" onClick={onOperandClick} />
+      <Button text="2" onClick={onOperandClick} />
+      <Button text="3" onClick={onOperandClick}/>
+      <Button text="+" onClick={onOperatorClick} />
+      <Button text="C" onClick={onOperatorClick} />
+      <Button text="0" onClick={onOperandClick} />
+      <Button text="." onClick={onOperandClick} />
+      <Button text="=" onClick={onOperatorClick} />
     </div>
   )
 };

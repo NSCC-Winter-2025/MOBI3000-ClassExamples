@@ -1,11 +1,12 @@
 import './Button.css';
 import {useEffect, useState} from "react";
 
-export const Button = ({text}) => {
+export const Button = ({text, onClick}) => {
   const [message, setMessage] = useState('');
 
   const handleClick = () => {
     setMessage('Clicked!');
+    onClick(text);
   };
 
   useEffect(() => {

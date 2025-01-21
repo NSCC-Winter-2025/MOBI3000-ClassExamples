@@ -1,7 +1,8 @@
 import './Display.css';
 
-export const Display = () => {
+export const Display = ({text}) => {
+
   return (
-    <h1 className='result'>Result</h1>
+    <h1 className='result'>{text}</h1>
   )
 };
