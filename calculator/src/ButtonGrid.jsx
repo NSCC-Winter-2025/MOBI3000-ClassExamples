@@ -1,5 +1,11 @@
 import './ButtonGrid.css';
 import {Button} from "./Button.jsx";
+import PropTypes from "prop-types";
+
+ButtonGrid.propTypes = {
+    onOperandClick: PropTypes.func,
+    onOperatorClick: PropTypes.func,
+}
 
 export const ButtonGrid = ({onOperandClick, onOperatorClick}) => {
   return (
