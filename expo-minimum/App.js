@@ -1,17 +1,20 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useFonts} from "expo-font";
-import { StatusBar } from 'expo-status-bar';
-import {Button, Pressable, StyleSheet, Text, View} from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
-import {Foundation} from "@expo/vector-icons";
+import {NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {HomeScreen} from "./HomeScreen";
+import {UserScreen} from "./UserScreen";
+import {Ionicons, Fontisto} from "@expo/vector-icons";
 
 SplashScreen.preventAutoHideAsync();
 
+// const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
 export default function App() {
 
-  const [text, setText] = useState('Hello World!');
-
-  const [loaded, error] = useFonts({
+   const [loaded, error] = useFonts({
     'Designer': require('./assets/fonts/Designer.otf'),
   });
 
@@ -23,49 +26,32 @@ export default function App() {
 
   if (!error && !loaded) return null;
 
-  const handleButtonPress = () => {
-    setText('You pressed the button!');
-  }
-
-  const handleTextPress = () => {
-    setText("That's FAST!");
-  }
-
   return (
-    <View style={styles.container}>
-      <Pressable onPress={handleTextPress}>
-        <Text style={styles.text}>FAST & FURIOUS!</Text>
-      </Pressable>
-      <View style={styles.view}>
-        <Text style={{color: 'white', fontSize: 25}}>{text}</Text>
-        <Foundation name="bitcoin" size={75} color="white" />
-      </View>
-      <Button title="Press ME!" onPress={handleButtonPress} />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName="Home" id="stack">
+        <Tab.Screen name="Home" component={HomeScreen}
+                    options={{
+                      tabBarLabel: 'Main',
+                      tabBarIcon: ({color, size, focused}) => {
+                        if (focused) {
+                          return <Ionicons name="home" size={size} color={color} />
+                        } else {
+                          return <Ionicons name="home-outline" size={size} color={color}/>
+                        }
+                      }
+        }} />
+        <Tab.Screen name="User" component={UserScreen}
+                    options={{
+                      tabBarLabel: 'Profile',
+                      tabBarIcon: ({color, size, focused}) => {
+                        if (focused) {
+                          return <Ionicons name="beer" size={size} color={color} />
+                        } else {
+                          return <Ionicons name="beer-outline" size={size} color={color}/>
+                        }
+                      }
+        }} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontFamily: 'Designer',
-    color: 'red',
-    fontSize: 50
-  },
-  view: {
-    backgroundColor: '#00f',
-    height: 200,
-    width: 200,
-    borderWidth: 5,
-    borderColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  }
-});
