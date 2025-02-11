@@ -1,25 +1,41 @@
 import {Foundation} from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {StatusBar} from "expo-status-bar";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Button, Pressable, StyleSheet, Text, View} from "react-native";
+import {saveSettings} from "./Settings";
+import {SettingsContext} from "./SettingsProvider";
 
-export const HomeScreen = ({navigation}) => {
-  const [text, setText] = useState('Hello World!');
+export const HomeScreen = ({navigation, onPressMeClick}) => {
+
+  const {theme, setTheme, username, setUsername} = useContext(SettingsContext);
 
   const handleButtonPress = () => {
-    navigation.navigate('User');
+    // navigation.navigate('User');
+    const newUsername = 'Brian';
+    setUsername(newUsername);
+
+    const newTheme = theme === "black" ? "white" : "black";
+    setTheme(newTheme);
+
+    const settings = {
+      theme: newTheme,
+      username: newUsername,
+    };
+    console.log(settings);
+    saveSettings(settings);
   }
 
   const handleTextPress = () => {
-    setText("That's FAST!");
+    // setText("That's FAST!");
   }
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container, backgroundColor: theme}}>
       <Pressable onPress={handleTextPress}>
         <Text style={styles.text}>FAST & FURIOUS!</Text>
       </Pressable>
       <View style={styles.view}>
-        <Text style={{color: 'white', fontSize: 25}}>{text}</Text>
+        <Text style={{color: 'white', fontSize: 25}}>{`Hello, ${username}`}</Text>
         <Foundation name="bitcoin" size={75} color="white" />
       </View>
       <Button title="Press ME!" onPress={handleButtonPress} />

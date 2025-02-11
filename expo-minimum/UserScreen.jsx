@@ -1,13 +1,17 @@
+import {useContext} from "react";
 import {Button, StyleSheet, Text, View} from "react-native";
-
+import {SettingsContext} from "./SettingsProvider";
 
 export const UserScreen = ({navigation}) => {
+
+  const {theme, setTheme, username, setUsername} = useContext(SettingsContext);
+
   const handleButtonPress = () => {
     navigation.navigate('Home');
   };
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>The User Screen</Text>
+    <View style={{...styles.container, backgroundColor: theme}}>
+      <Text style={styles.text}>{`${username} Profile`}</Text>
       <Button onPress={handleButtonPress} title="Go Home" />
     </View>
   )
